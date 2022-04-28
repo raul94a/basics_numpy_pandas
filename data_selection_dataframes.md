@@ -1,7 +1,10 @@
-# How to select data from DataFrames - a quick tutorial from Raúl Albín
+# How to select data from DataFrames using Pandas
+------
+Tutorial made by Raúl Albín.
 
+Andalucía, Spain
 
-##Example table
+## Example table
 | customer_id | year_of_birth | educational_level marital_status | annual_income purhcase_date | recency      | online_purchases | store_purchases | complaints | calls | intercoms |     |     |     |
 | ----------- | ------------- | -------------------------------- | --------------------------- | ------------ | ---------------- | --------------- | ---------- | ----- | --------- | --- | --- | --- |
 | 228         | 20201929      | 1996                             | PhD                         | Widowed      | 79930.0          | 8/8/2012        | 72         | 3     | 8         | 0   | 9   | 11  |
@@ -29,9 +32,10 @@
 | 322         | 20202023      | 2000                             | PhD                         | Relationship | 26476.0          | 2/9/2014        | 6          | 1     | 2         | 0   | 3   | 11  |
 
 
-#####Imagine a variable called data which owns a dataframe from the table provided above. Something like this: 
+##### Imagine a variable called data which owns a dataframe from the table provided above. Something like this: 
 
-```
+```python
+import pandas as pd
 #download this repository in order to have access to the CSV
 data = pd.read_csv('data/project_data.csv')
 ```
@@ -39,22 +43,22 @@ data = pd.read_csv('data/project_data.csv')
 When selecting a value from a dataFrame, you must use the iloc or loc attributes to avoid future errors:
 - loc attribute allows splicing and indexing using the explicit index. This means that if we want to access the second column of the first row (0,1) of the dataframe, maybe it could not be possible if the column has a name different to 1. In the case of the dataFrame provided by this example, the way of accessing the second element of the first row is the following: 
 
-```
+```python
 print(data.loc[0,'year_of_birth ']) #1982
 ```
 - iloc attribute allows to use the normal integer splicing
-```
+```python
 #will have the same result as the loc example
 print(data.iloc[0,1]) #1982
-```
+``` 
 ###### column selection
-```
+```py
 #this will print the annual_income column from the table
 print(data['annual_income])
 ```
 
 ###### row selection
-```
+```py
 #this will return the row. It can be called as the numeric index
 #or even a string, depending on the data scientist
 #when working with pandas is recommended to use dataframe.loc 
@@ -73,8 +77,8 @@ print(data.iloc[:10,:5])
 
 ```
 
-######More complex data selection
-```
+###### More complex data selection
+```py
 #The general structure for selecting data by boolean masking is:
 boolean_mask = data['educational_level'] == 'Master'
 
